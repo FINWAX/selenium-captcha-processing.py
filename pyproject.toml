@@ -1,0 +1,49 @@
+[project]
+name = "selenium-captcha-processing"
+version = "1.0.0"
+description = "A Python package for detecting and solving various captchas in Selenium-based web automation, supporting reCAPTCHA, Cloudflare Turnstile, and more."
+authors = [{ name = "FINWAX", email = "waxbid@gmail.com" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "speechrecognition>=3.14.3,<4.0.0",
+    "requests>=2.32.4,<3.0.0",
+    "selenium>=4.33.0,<5.0.0",
+    "pydub>=0.25.1,<0.26.0"
+]
+keywords = [
+    "captcha",
+    "selenium",
+    "web-automation",
+    "recaptcha",
+    "cloudflare-turnstile",
+    "geetest",
+    "speech-recognition",
+    "bypass-captcha"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Operating System :: OS Independent"
+]
+[project.urls]
+Homepage = "https://github.com/FINWAX/selenium-captcha-processing.py"
+Repository = "https://github.com/FINWAX/selenium-captcha-processing.py"
+
+
+[tool.poetry]
+
+[tool.poetry.group.dev.dependencies]
+docker-chrome-session-manager = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
