@@ -21,7 +21,7 @@ from .detectors.interfaces.detector import DetectCaptchaI
 from .solvers.interfaces.solver import SolveCaptchaI
 from .utils.interfaces.speech_recogniser import SpeechRecogniserI
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 __all__ = [
     'BypassCaptcha',
