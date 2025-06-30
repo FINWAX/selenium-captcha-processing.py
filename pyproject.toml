@@ -1,6 +1,6 @@
 [project]
 name = "selenium-captcha-processing"
-version = "1.0.0"
+version = "1.0.1"
 description = "A Python package for detecting and solving various captchas in Selenium-based web automation, supporting reCAPTCHA, Cloudflare Turnstile, and more."
 authors = [{ name = "FINWAX", email = "waxbid@gmail.com" }]
 license = { file = "LICENSE" }
