@@ -728,14 +728,14 @@ websocket-client = ">=1.8.0,<1.9.0"
 
 [[package]]
 name = "selmate"
-version = "1.1.1"
+version = "1.3.0"
 description = "A utility library for Selenium WebDriver to enable human-like interactions, robust exception handling, and web automation tasks like popup handling and URL normalization."
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "selmate-1.1.1-py3-none-any.whl", hash = "sha256:3b451f4ad729fd8ab07492adf19feb02059d3203802b035d59925ce1cf4a4ca3"},
-    {file = "selmate-1.1.1.tar.gz", hash = "sha256:5060fc483c44601ba2f38bc4e60d948047910a3d2ad637ff950a25d5eff2b8eb"},
+    {file = "selmate-1.3.0-py3-none-any.whl", hash = "sha256:44bef73b2f492a89bea41baaa06fb762a78328f33b29028d41b814f44d62f757"},
+    {file = "selmate-1.3.0.tar.gz", hash = "sha256:4a22279e17dd9e352e8c4e68c166efe4a80f2eb62961d36333955a515b569855"},
 ]
 
 [package.dependencies]
