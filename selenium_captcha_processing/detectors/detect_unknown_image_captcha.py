@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selmate.composites import element_displayed_enabled
 
 from selenium_captcha_processing.detectors.interfaces.detector import DetectCaptchaI
 from selenium_captcha_processing.config import Config
@@ -28,7 +29,7 @@ class DetectUnknownImageCaptcha(DetectCaptchaI):
         )
         displayed_captcha_images_cnt = 0
         for captcha_image in captcha_images:
-            displayed_captcha_images_cnt += int(captcha_image.is_displayed())
+            displayed_captcha_images_cnt += int(element_displayed_enabled(captcha_image))
 
         if displayed_captcha_images_cnt:
             score += 0.4
@@ -46,7 +47,7 @@ class DetectUnknownImageCaptcha(DetectCaptchaI):
         )
         displayed_captcha_inputs_cnt = 0
         for captcha_input in captcha_inputs:
-            displayed_captcha_inputs_cnt += int(captcha_input.is_displayed())
+            displayed_captcha_inputs_cnt += int(element_displayed_enabled(captcha_input))
 
         if displayed_captcha_inputs_cnt:
             score += 0.4

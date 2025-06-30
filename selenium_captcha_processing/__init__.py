@@ -13,7 +13,7 @@ from .classification import Classify
 from .config import Config
 from .data import CaptchaNote
 from .factory import make_detector_type, make_solver_type, make_default_utils, make_default_config
-from .helpers import human_type, js_click, find_element_safely, is_element_absent_or_invisible, download_audio
+from .helpers import download_audio
 from .solving import Solve
 from .utils.container import Utils
 from .utils.recognize_speech_by_google_api import RecognizeSpeechByGoogleApi
@@ -33,10 +33,6 @@ __all__ = [
     'make_solver_type',
     'make_default_utils',
     'make_default_config',
-    'human_type',
-    'js_click',
-    'find_element_safely',
-    'is_element_absent_or_invisible',
     'download_audio',
     'Solve',
     'Utils',

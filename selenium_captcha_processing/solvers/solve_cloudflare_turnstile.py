@@ -1,9 +1,9 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selmate.selenium_primitives import find_element_safely
 
 from selenium_captcha_processing.config import Config
-from selenium_captcha_processing.helpers import find_element_safely
 from selenium_captcha_processing.solvers.interfaces.solver import SolveCaptchaI
 from selenium_captcha_processing.utils.container import Utils
 
@@ -16,12 +16,14 @@ class SolveCloudflareTurnstile(SolveCaptchaI):
 
     def solve(self) -> bool:
         main_host = find_element_safely(
-            self.driver, By.XPATH, "//*[@name='cf-turnstile-response']/..",
+            By.XPATH, "//*[@name='cf-turnstile-response']/..",
+            self.driver,
             self.config.default_element_waiting
         )
         if main_host is None or not main_host.is_displayed():
             main_host = find_element_safely(
-                self.driver, By.XPATH, "//*[@data-sitekey]",
+                By.XPATH, "//*[@data-sitekey]",
+                self.driver,
                 self.config.default_element_waiting
             )
 

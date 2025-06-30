@@ -1,14 +1,15 @@
 import os
 import tempfile
 import uuid
-from time import sleep
 
 from pydub import AudioSegment
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selmate.composites import complex_click, selenium_human_type
+from selmate.selenium_primitives import find_element_safely
 
 from selenium_captcha_processing.config import Config
-from selenium_captcha_processing.helpers import find_element_safely, js_click, human_type, download_audio
+from selenium_captcha_processing.helpers import download_audio
 from selenium_captcha_processing.solvers.interfaces.solver import SolveCaptchaI
 from selenium_captcha_processing.utils.container import Utils
 
@@ -21,7 +22,8 @@ class SolveReCaptcha(SolveCaptchaI):
 
     def solve(self) -> bool:
         recaptcha_iframe = find_element_safely(
-            self.driver, By.XPATH, '//iframe[@title="reCAPTCHA"]',
+            By.XPATH, '//iframe[@title="reCAPTCHA"]',
+            self.driver,
             self.config.default_element_waiting
         )
         if recaptcha_iframe is None:
@@ -30,15 +32,15 @@ class SolveReCaptcha(SolveCaptchaI):
         self.driver.switch_to.frame(recaptcha_iframe)
 
         checkbox = find_element_safely(
-            self.driver, By.ID, 'recaptcha-anchor',
+            By.ID, 'recaptcha-anchor',
+            self.driver,
             self.config.default_element_waiting
         )
         if checkbox is None:
             self.driver.switch_to.parent_frame()
             return False
 
-        js_click(self.driver, checkbox)
-        sleep(0.5)
+        complex_click(checkbox, self.driver, prevent_unselect=True)
         if checkbox.get_attribute('aria-checked') == 'true':
             self.driver.switch_to.parent_frame()
             return True
@@ -49,9 +51,9 @@ class SolveReCaptcha(SolveCaptchaI):
 
     def _solve_challenge(self):
         captcha_challenge = find_element_safely(
-            self.driver,
             By.XPATH,
             '//iframe[contains(@src, "recaptcha") and contains(@src, "bframe")]',
+            self.driver,
             timeout=5,
         )
 
@@ -61,20 +63,20 @@ class SolveReCaptcha(SolveCaptchaI):
         self.driver.switch_to.frame(captcha_challenge)
 
         audio_btn = find_element_safely(
-            self.driver,
             By.XPATH,
             '//*[@id="recaptcha-audio-button"]',
+            self.driver,
             timeout=1.5,
         )
         if audio_btn is None:
             return False
 
-        audio_btn.click()
+        complex_click(audio_btn, self.driver)
 
         download_link = find_element_safely(
-            self.driver,
             By.CLASS_NAME,
             'rc-audiochallenge-tdownload-link',
+            self.driver,
             timeout=7,
         )
         if download_link is None:
@@ -99,22 +101,20 @@ class SolveReCaptcha(SolveCaptchaI):
                     os.remove(path)
 
         response_textbox = find_element_safely(
-            self.driver, By.ID, 'audio-response', self.config.default_element_waiting
+            By.ID, 'audio-response', self.driver, self.config.default_element_waiting
         )
         if response_textbox is None:
             return False
 
-        human_type(element=response_textbox, text=recognized_text)
+        selenium_human_type(recognized_text, response_textbox)
 
         second_verify_button = find_element_safely(
-            self.driver,
             By.ID,
             'recaptcha-verify-button',
+            self.driver,
             timeout=5,
         )
         if second_verify_button is None:
             return False
 
-        js_click(self.driver, second_verify_button)
-
-        return True
+        return complex_click(second_verify_button, self.driver)

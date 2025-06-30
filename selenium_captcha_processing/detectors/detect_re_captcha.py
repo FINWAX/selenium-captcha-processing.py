@@ -1,9 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selmate.composites import element_displayed_enabled
+from selmate.selenium_primitives import find_element_safely
 
 from selenium_captcha_processing.detectors.interfaces.detector import DetectCaptchaI
 from selenium_captcha_processing.config import Config
-from selenium_captcha_processing.helpers import find_element_safely
 from selenium_captcha_processing.utils.container import Utils
 
 
@@ -17,17 +18,19 @@ class DetectReCaptcha(DetectCaptchaI):
         score = 0.0
 
         recaptcha_iframe = find_element_safely(
-            self.driver, By.XPATH, '//iframe[@title="reCAPTCHA"]',
+            By.XPATH, '//iframe[@title="reCAPTCHA"]',
+            self.driver,
             self.config.default_element_waiting
         )
-        if recaptcha_iframe and recaptcha_iframe.is_displayed():
+        if recaptcha_iframe and element_displayed_enabled(recaptcha_iframe):
             score += 0.25
 
         site_key = find_element_safely(
-            self.driver, By.XPATH, '//*[@data-sitekey]',
+            By.XPATH, '//*[@data-sitekey]',
+            self.driver,
             self.config.default_element_waiting
         )
-        if site_key and site_key.is_displayed():
+        if site_key and element_displayed_enabled(site_key):
             score += 0.5
 
         js_obj = self.driver.execute_script("return typeof window.grecaptcha !== 'undefined';")

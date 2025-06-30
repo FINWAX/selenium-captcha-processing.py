@@ -1,9 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selmate.composites import element_displayed_enabled
+from selmate.selenium_primitives import find_element_safely
 
 from selenium_captcha_processing.detectors.interfaces.detector import DetectCaptchaI
 from selenium_captcha_processing.config import Config
-from selenium_captcha_processing.helpers import find_element_safely
 from selenium_captcha_processing.utils.container import Utils
 
 
@@ -17,14 +18,16 @@ class DetectCloudflareTurnstile(DetectCaptchaI):
         score = 0.0
 
         host_el = find_element_safely(
-            self.driver, By.XPATH, "//*[@data-sitekey]",
+            By.XPATH, "//*[@data-sitekey]",
+            self.driver,
             self.config.default_element_waiting
         )
-        if host_el and host_el.is_displayed():
+        if host_el and element_displayed_enabled(host_el):
             score += 0.25
 
         response_el = find_element_safely(
-            self.driver, By.XPATH, '//*[@name="cf-turnstile-response"]',
+            By.XPATH, '//*[@name="cf-turnstile-response"]',
+            self.driver,
             self.config.default_element_waiting
         )
         if response_el is not None:

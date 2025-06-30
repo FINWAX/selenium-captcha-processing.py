@@ -1,9 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selmate.composites import element_displayed_enabled
+from selmate.selenium_primitives import find_element_safely
 
 from selenium_captcha_processing.detectors.interfaces.detector import DetectCaptchaI
 from selenium_captcha_processing.config import Config
-from selenium_captcha_processing.helpers import find_element_safely
 from selenium_captcha_processing.utils.container import Utils
 
 
@@ -28,10 +29,11 @@ class DetectLeminCaptcha(DetectCaptchaI):
             score += 0.2
 
         div = find_element_safely(
-            self.driver, By.ID, 'lemin-cropped-captcha',
+            By.ID, 'lemin-cropped-captcha',
+            self.driver,
             self.config.default_element_waiting
         )
-        if div is not None and div.is_displayed():
+        if div is not None and element_displayed_enabled(div):
             score += 0.55
 
         return score

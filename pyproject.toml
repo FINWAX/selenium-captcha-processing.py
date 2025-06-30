@@ -10,7 +10,8 @@ dependencies = [
     "speechrecognition>=3.14.3,<4.0.0",
     "requests>=2.32.4,<3.0.0",
     "selenium>=4.33.0,<5.0.0",
-    "pydub>=0.25.1,<0.26.0"
+    "pydub>=0.25.1,<0.26.0",
+    "selmate (>=1.1.0,<2.0.0)"
 ]
 keywords = [
     "captcha",
