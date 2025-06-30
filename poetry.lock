@@ -284,14 +284,14 @@ files = [
 
 [[package]]
 name = "docker-chrome-session-manager"
-version = "1.0.3"
+version = "1.0.4"
 description = "A Python module for managing Selenium Chrome sessions across multiple Docker containers."
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "docker_chrome_session_manager-1.0.3-py3-none-any.whl", hash = "sha256:e47148ed0cd46474795ad0b28356e817c4a71a57caa8a779c10d4a34cd98b829"},
-    {file = "docker_chrome_session_manager-1.0.3.tar.gz", hash = "sha256:ae0188f88690bac04ce95dc73d04f0b2a102226ddd1ceb1e31a99b7f81a57a32"},
+    {file = "docker_chrome_session_manager-1.0.4-py3-none-any.whl", hash = "sha256:bd252761abacc36412a0da7ca7c20f3ad637cd2a8d6eb979e441ca7b5142d02f"},
+    {file = "docker_chrome_session_manager-1.0.4.tar.gz", hash = "sha256:30736c14513f3b64643aaee6844e80e2a33db307da81fb99eedfb44ac2ecc952"},
 ]
 
 [package.dependencies]
@@ -728,14 +728,14 @@ websocket-client = ">=1.8.0,<1.9.0"
 
 [[package]]
 name = "selmate"
-version = "1.1.0"
+version = "1.1.1"
 description = "A utility library for Selenium WebDriver to enable human-like interactions, robust exception handling, and web automation tasks like popup handling and URL normalization."
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "selmate-1.1.0-py3-none-any.whl", hash = "sha256:5a07e21f86aa3986c3a9cde2fa1fd06f912de1bc858e47cd0c7b26a13603fdf2"},
-    {file = "selmate-1.1.0.tar.gz", hash = "sha256:6223e13d46d1007740a3151d77d02d83af809412e42be935c00da5c3d5dca319"},
+    {file = "selmate-1.1.1-py3-none-any.whl", hash = "sha256:3b451f4ad729fd8ab07492adf19feb02059d3203802b035d59925ce1cf4a4ca3"},
+    {file = "selmate-1.1.1.tar.gz", hash = "sha256:5060fc483c44601ba2f38bc4e60d948047910a3d2ad637ff950a25d5eff2b8eb"},
 ]
 
 [package.dependencies]
